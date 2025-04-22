@@ -5,6 +5,7 @@ import axios from 'axios';
 
 // Export a function to start the server
 export async function startServer() {
+  console.error("MCP Server starting..."); 
   // Create an MCP server
   const server = new McpServer({
     name: "ComposerMCP",
@@ -321,13 +322,4 @@ export async function startServer() {
   // Start receiving messages on stdin and sending messages on stdout
   const transport = new StdioServerTransport();
   await server.connect(transport);
-}
-
-// Instead of checking import.meta.main (which doesn't exist),
-// we can check if this file is being run directly by comparing the URL to undefined
-if (typeof require === 'undefined' && import.meta.url) {
-  startServer().catch(error => {
-    console.error('Server error:', error);
-    process.exit(1);
-  });
 }
