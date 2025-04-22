@@ -46,7 +46,22 @@ That's it! The NPX command will automatically download and run the Composer MCP 
 
 ## 🔧 Usage
 
-Once configured, you can use the `install_package` tool in your AI assistant:
+Once configured, you can interact with your AI assistant in a natural way to install Composer packages:
+
+```
+You: Composer AI install laravel/sanctum
+
+AI: [Analyzes the package and provides installation instructions]
+To install laravel/sanctum, run the following command:
+
+`composer require laravel/sanctum`
+
+After installation, complete these additional setup steps:
+- Run `php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"` to publish configuration
+- Run `php artisan migrate` to create the required tables
+```
+
+Behind the scenes, the AI assistant is using the `install_package` tool:
 
 ```
 install_package(package="laravel/sanctum", version="^3.0")
@@ -59,13 +74,18 @@ The tool will:
 
 ## 🧠 How It Works
 
-The Composer MCP Server leverages the Model Context Protocol (MCP) to extend AI assistants with PHP Composer capabilities. When you request a package installation, the server:
+The Composer MCP Server leverages the Model Context Protocol (MCP) to extend AI assistants with PHP Composer capabilities. When you ask your AI assistant to install a package, the following happens:
 
-1. Checks Packagist for the package information
-2. Fetches the package's README from GitHub or GitLab
-3. Intelligently parses the README to identify setup instructions
-4. Falls back to built-in knowledge for common packages if needed
-5. Returns formatted installation and setup instructions
+1. Your request ("Composer AI install {package_name}") is recognized by the AI
+2. The AI calls the `install_package` tool provided by the MCP server
+3. The MCP server checks Packagist for the package information
+4. It fetches the package's README from GitHub or GitLab
+5. It intelligently parses the README to identify installation and setup instructions
+6. If the README doesn't contain clear instructions, it falls back to built-in knowledge for common packages
+7. The formatted installation and setup instructions are returned to the AI
+8. The AI presents this information to you in a helpful, conversational format
+
+This entire process happens in seconds, saving you from having to search documentation and figure out post-installation steps on your own.
 
 ## 🤝 Contributing
 
@@ -91,6 +111,12 @@ Here's how you can help:
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📱 Connect
+
+If you find this tool helpful, feel free to connect with the creator:
+- Twitter/X: [@jordankdalton](https://twitter.com/jordankdalton)
+- Reddit: [jdcarnivore](https://www.reddit.com/user/jdcarnivore)
 
 ---
 
