@@ -1,6 +1,6 @@
 {
   "name": "composer-mcp-server",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "build/index.js",
   "type": "module",
   "scripts": {
@@ -36,7 +36,7 @@
     "typescript": "^5.8.3"
   },
   "bin": {
-    "composer-mcp-server": "./build/index.js"
+    "composer-mcp-server": "./bin.js"
   },
   "files": [
   "build",
