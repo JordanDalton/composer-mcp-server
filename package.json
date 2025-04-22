@@ -36,10 +36,5 @@
   },
   "bin": {
     "composer-mcp-server": "./bin.js"
-  },
-  "files": [
-    "build",
-    "bin.js",
-    "readme.md"
-  ]
+  }
 }
