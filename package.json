@@ -1,10 +1,11 @@
 {
   "name": "composer-mcp-server",
-  "version": "0.0.4",
-  "main": "index.js",
+  "version": "0.0.5",
+  "main": "build/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc && chmod 755 build/index.js && node showSettings",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -35,6 +36,10 @@
     "typescript": "^5.8.3"
   },
   "bin": {
-    "composer-mcp-server": "./bin.js"
-  }
+    "composer-mcp-server": "./build/index.js"
+  },
+  "files": [
+  "build",
+  "bin.js"
+  ]
 }
