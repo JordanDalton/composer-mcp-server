@@ -1,0 +1,31 @@
+{
+  "name": "composer-mcp-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && chmod 755 build/index.js && node showSettings"
+  },
+  "keywords": [
+    "mcp",
+    "laravel",
+    "composer",
+    "package"
+  ],
+  "author": "",
+  "license": "MIT",
+  "description": "MCP Server installing Laravel-specific composer packages",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "axios": "^1.8.4",
+    "form-data": "^4.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "^5.8.3"
+  },
+  "bin": {
+    "composer-mcp-server": "./bin.js"
+  }
+}
