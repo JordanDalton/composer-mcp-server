@@ -1,20 +1,29 @@
 {
   "name": "composer-mcp-server",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc && chmod 755 build/index.js && node showSettings"
+    "build": "tsc && chmod 755 build/index.js && node showSettings",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "mcp",
     "laravel",
     "composer",
-    "package"
+    "package",
+    "ai",
+    "assistant",
+    "model-context-protocol"
   ],
-  "author": "",
+  "author": "Jordan Dalton <jordan@daltonsolutions.com>",
   "license": "MIT",
-  "description": "MCP Server installing Laravel-specific composer packages",
+  "description": "MCP Server for installing and setting up PHP Composer packages with AI assistants",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jordandalton/composer-mcp-server.git"
+  },
+  "homepage": "https://github.com/jordandalton/composer-mcp-server",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.8.0",
     "axios": "^1.8.4",
@@ -27,5 +36,10 @@
   },
   "bin": {
     "composer-mcp-server": "./bin.js"
-  }
+  },
+  "files": [
+    "build",
+    "bin.js",
+    "readme.md"
+  ]
 }

@@ -1,27 +1,34 @@
 #!/usr/bin/env node
-import { execSync } from 'child_process';
-// This is the entry point that will be executed when someone runs your command with npx
-console.log('Starting build process...');
 
-// You can import any build logic from other files if needed
-// const { runBuild } = require('./index.js');
+// This is the entry point that will be executed when someone runs the command with npx
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { spawn } from 'child_process';
 
-// Or simply put your build logic directly here
-function runBuild() {
-  try {
-    // Your build process here
-    console.log('Building the project...');
-    
-    // Execute the build command - modify this to match your actual build command
-    execSync('npm run build', { stdio: 'inherit' });
-    
-    console.log('Build completed successfully!');
-    return true;
-  } catch (error) {
-    console.error('Build failed:', error.message);
-    process.exit(1);
+// Get the directory where this script is located
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Path to the built index.js file
+const serverPath = join(__dirname, 'build', 'index.js');
+
+console.log('Starting Composer MCP Server...');
+
+// Spawn the server process
+const server = spawn('node', [serverPath], {
+  stdio: 'inherit' // This will pipe stdin/stdout/stderr to the parent process
+});
+
+// Handle process termination
+process.on('SIGINT', () => {
+  console.log('Shutting down Composer MCP Server...');
+  server.kill('SIGINT');
+  process.exit(0);
+});
+
+server.on('close', (code) => {
+  if (code !== 0) {
+    console.error(`Composer MCP Server exited with code ${code}`);
+    process.exit(code);
   }
-}
-
-// Run the build process
-runBuild();
+});
